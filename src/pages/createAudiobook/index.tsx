@@ -1,7 +1,6 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import Audiobooks from '../api/audiobooks';
+import Audiobooks from '../../api/audiobooks';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const data = await Audiobooks.ListAll();
@@ -21,27 +20,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {};
 } */
 
-
-
-interface HomeProps {
+interface CreateAudiobookProps {
   title?: string;
   data?: any;
 }
 
-const Home: React.FC<HomeProps> = ({
+const CreateAudiobook: React.FC<CreateAudiobookProps> = ({
   title = 'Loudbook',
   data,
 }) => {  
   const [ searchValue, setSearchValue ] = useState(null);
-
-  const handleKeyEnter = (event) => {
-    if (event.key === 'Enter') {
-      setSearchValue(event.currentTarget.value);
-      Audiobooks.SearchAll(searchValue);
-    }
-  }
   const locale = 'es-MX';
-  console.log(data);
   const parsedData = data.items.map((item, index) => {
     const keys = Object.keys(item.fields);
     let newItem = {};
@@ -55,37 +44,22 @@ const Home: React.FC<HomeProps> = ({
     }
     return newItem;
   });
-  console.log(parsedData);
   return (
-    <main>
-      <header>
-        <h1>{title}</h1>
-        <Link href='/createAudiobook' passHref>
-          <a>Create book</a>
-        </Link>
-      </header>
-      <section>
-        <input 
-          onKeyDown={handleKeyEnter}
-          type="text"
-          placeholder="Type what you wanna search..."
-        />
+    <div>
+      <h1>{title}</h1>
+      <div>
+        <button onClick={() => Audiobooks.CreateOne()}>Add Book</button>
+      </div>
+      <div>
+        <p>{searchValue}</p>
+        <input onChange={(event) => setSearchValue(event.target.value)} type="text" placeholder="Type what you wanna search..."/>
         <button onClick={() => Audiobooks.SearchAll(searchValue)}>Search</button>  
-      </section>
-      <section>
-        <div>
-          <button onClick={() => Audiobooks.ListOne(data.items[3])}>Show Book Detail</button>  
-        </div>
-        <Link href={`/updateAudiobook/${parsedData}`} passHref>
-          <a>Update book</a>
-        </Link>
-        <div>
-          <button onClick={() => Audiobooks.DeleteOne(data.items[0])}>Delete Book</button>
-        </div>
-      </section>
-
-    </main>
+      </div>
+      <div>
+        <button onClick={() => Audiobooks.DeleteOne(data.items[0])}>Delete Book</button>  
+      </div>
+    </div>
   )
 }
 
-export default Home;
+export default CreateAudiobook;

@@ -12,7 +12,7 @@ const CreateOne = async () => {
       method: 'POST',
       redirect: 'follow',
       headers: Common.Headers,
-      body: JSON.stringify(Data.AudioBookNewData)
+      body: JSON.stringify(Data.AudiobookNewData)
     })
     const data = await response.json();
     return data;  
@@ -31,7 +31,7 @@ const UpdateOne = async (audiobook) => {
       method: 'PUT',
       redirect: 'follow',
       headers: headers,
-      body: JSON.stringify(Data.AudioBookUpdateData)
+      body: JSON.stringify(Data.AudiobookUpdateData)
     })
     const data = await response.json();
     return data;  
@@ -48,7 +48,7 @@ const DeleteOne = async (audiobook) => {
       method: 'DELETE',
       redirect: 'follow',
       headers: Common.Headers,
-      body: JSON.stringify(Data.AudioBookDeleteData)
+      body: JSON.stringify(Data.AudiobookDeleteData)
     })
     const data = await response.json();
     return data;  
@@ -101,7 +101,7 @@ const SearchAll = async (search) => {
   }
 };
 
-const AudioBooks = {
+const Audiobooks = {
   ListAll,
   CreateOne,
   UpdateOne,
@@ -110,4 +110,4 @@ const AudioBooks = {
   DeleteOne
 }
 
-export default AudioBooks;
+export default Audiobooks;

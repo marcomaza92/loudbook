@@ -1,4 +1,4 @@
-const AudioBookNewData = {
+const AudiobookNewData = {
   "fields": {
     "title": {
       "es-MX": "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future"
@@ -31,7 +31,7 @@ const AudioBookNewData = {
   }
 };
 
-const AudioBookUpdateData = {
+const AudiobookUpdateData = {
   "fields": {
       "title": {
           "es-MX": "Elon Musk"
@@ -64,12 +64,12 @@ const AudioBookUpdateData = {
   }
 };
 
-const AudioBookDeleteData = {};
+const AudiobookDeleteData = {};
 
 const Data = {
-  AudioBookNewData,
-  AudioBookUpdateData,
-  AudioBookDeleteData
+  AudiobookNewData,
+  AudiobookUpdateData,
+  AudiobookDeleteData
 }
 
 export default Data;
