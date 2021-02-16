@@ -6,15 +6,17 @@ const FetchURLs = {
   WithParams: `${Common.BaseURL}${Common.DataURL}${Common.ParamsURL}`
 }
 
-const CreateOne = async () => {
+const CreateOne = async (audiobook) => {
+  console.log(audiobook);
   try {
     const response = await fetch(FetchURLs.WithoutParams, {
       method: 'POST',
       redirect: 'follow',
       headers: Common.Headers,
-      body: JSON.stringify(Data.AudiobookNewData)
+      body: audiobook
     })
     const data = await response.json();
+    console.log(data);
     return data;  
   } catch (error) {
     console.log(error);
@@ -57,8 +59,8 @@ const DeleteOne = async (audiobook) => {
   }
 };
 
-const ListOne = async (audiobook) => {
-  const url = `${FetchURLs.WithParams}&sys.id=${audiobook.sys.id}`;
+const ListOne = async (id) => {
+  const url = `${FetchURLs.WithParams}&sys.id=${id}`;
   try {
     const response = await fetch(url, {
       method: 'GET',

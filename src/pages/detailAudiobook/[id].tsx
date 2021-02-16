@@ -29,11 +29,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 }
 
-interface UpdateAudiobookProps {
+interface DetailAudiobookProps {
   data?: any;
 }
 
-const UpdateAudiobook: React.FC<UpdateAudiobookProps> = ({
+const DetailAudiobook: React.FC<DetailAudiobookProps> = ({
   data
 }) => {
   const parsedData = data && parseData(data)[0];
@@ -45,4 +45,4 @@ const UpdateAudiobook: React.FC<UpdateAudiobookProps> = ({
   )
 }
 
-export default UpdateAudiobook;
+export default DetailAudiobook;
